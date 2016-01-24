@@ -6,8 +6,9 @@ from functools import wraps
 
 app = Flask(__name__)
 
-app.secret_key = "my previous"
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///posts.db'
+# config 
+import os 
+app.config.from_object(os.environ['APP_SETTINGS'])
 
 #cretae the sqlalchmey object
 
@@ -58,10 +59,5 @@ def logout():
     flash("You were just logged out")
     return redirect(url_for('welcome'))
 
-#def connect_db():
-#    return sqlite3.connect(app.database)
-
-
-
 if __name__ == '__main__':
-    app.run(debug = True)
+    app.run()
