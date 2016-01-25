@@ -4,8 +4,8 @@ class BlogPost(db.Model):
     __tablename___ = "posts"
 
     id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String, nullable=False)
-    description = db.Column(db.String, nullable=False)
+    title = db.Column(db.String(30), nullable=False)
+    description = db.Column(db.String(30), nullable=False)
 
     def __init__(self, title, description):
         self.title = title
