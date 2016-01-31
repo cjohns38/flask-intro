@@ -8,6 +8,15 @@ class BaseConfig(object):
     SECRET_KEY = '\x84{\x80K\xe6i\xbd`\xb1\xa0\x0f9\x84%s\xc9\xe7\xf5c\xb6C\xa6\xf2\xd3'
     SQLALCHEMY_DATABASE_URI = os.environ['DATABASE_URL']
 
+
+class TestConfig(BaseConfig):
+    DEBUG = True
+    TESTING = True
+    WTF_CSRF_ENABLED = False
+    SQLALCHEMY_DATABASE_URI = 'sqlite:///:memory:'
+
+
+
 class DevelopmentConfig(BaseConfig):
     DEBUG = True
 
