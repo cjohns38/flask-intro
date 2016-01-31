@@ -93,6 +93,19 @@ class UserViewsTests(BaseTestCase):
         response = self.client.get('/logout', follow_redirects=True)
         self.assertIn(b'Please log in to access this page', response.data)
 
+    # Ensure user can register
+    def test_user_registration(self):
+        with self.client:
+            response = self.client.post(
+                '/register',
+                data=dict(username="craig", email="test@email.com",  
+                password="testpassword", confirm='testpassword'),
+                follow_redirects=True
+            )
+            self.assertIn(b'Welcome to Flask!', response.data)
+            self.assertTrue(current_user.name == "craig")
+            self.assertTrue(current_user.is_active)
+
 
 if __name__ == '__main__':
     unittest.main()
